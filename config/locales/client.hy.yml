@@ -1788,6 +1788,13 @@ hy:
     go_back: "ետ գնալ"
     not_logged_in_user: "օգտատիրոջ էջը՝ ընթացիկ ակտիվության և նախընտրությունների ամփոփումով"
     current_user: "գնալ իմ էջը"
+    user_menu:
+      tabs:
+        replies: "Պատասխաններ"
+        mentions: "Հիշատակումներ"
+        likes: "Հավանում"
+        bookmarks: "Էջանշաններ"
+        profile: "Պրոֆիլ"
     topics:
       new_messages_marker: "վերջին այցելությունը"
       bulk:
@@ -2281,10 +2288,6 @@ hy:
         confirm:
           one: "Դուք համոզվա՞ծ եք, որ ցանկանում եք ջնջել այդ հրապարակումը:"
           other: "Դուք համոզվա՞ծ եք, որ ցանկանում եք ջնջել այդ%{count} գրառումները:"
-      merge:
-        confirm:
-          one: "Դուք համոզվա՞ծ եք, որ ցանկանում եք միավորել այդ հրապարակումները:"
-          other: "Դուք համոզվա՞ծ եք, որ ցանկանում եք միավորել այդ %{count} գրառումները:"
       revisions:
         controls:
           first: "Առաջին խմբագրությունը"
@@ -2878,7 +2881,10 @@ hy:
         one: "%{count} նոր"
         other: "%{count} նոր"
       more: "Ավելին..."
+      all_categories: "Բոլոր կատեգորիաները"
       sections:
+        about:
+          header_link_text: "Մասին"
         messages:
           header_link_text: "Հաղորդագրություններ"
           links:

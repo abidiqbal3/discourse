@@ -2640,6 +2640,13 @@ ar:
     not_logged_in_user: "صفحة المستخدم مع ملخص عن نشاطه الحالي وتفضيلاته"
     current_user: "الانتقال إلى صفحة المستخدم"
     view_all: "عرض الكل %{tab}"
+    user_menu:
+      tabs:
+        replies: "الردود"
+        mentions: "الإشارات"
+        likes: "الاعجابات"
+        bookmarks: "الإشارات المرجعية"
+        profile: "الملف الشخصي"
     topics:
       new_messages_marker: "آخر زيارة"
       bulk:
@@ -3427,14 +3434,6 @@ ar:
           few: "هل تريد بالتأكيد حذف %{count} منشورات؟"
           many: "هل تريد بالتأكيد حذف %{count} منشورًا؟"
           other: "هل تريد بالتأكيد حذف %{count} منشور؟"
-      merge:
-        confirm:
-          zero: "هل تريد بالتأكيد دمج %{count} منشور؟"
-          one: "هل تريد بالتأكيد دمج هذا المنشور؟"
-          two: "هل تريد بالتأكيد دمج هذين المنشورين (%{count})؟"
-          few: "هل تريد بالتأكيد دمج %{count} منشورات؟"
-          many: "هل تريد بالتأكيد دمج %{count} منشورًا؟"
-          other: "هل تريد بالتأكيد دمج %{count} منشور؟"
       revisions:
         controls:
           first: "أول مراجعة"
@@ -4287,7 +4286,10 @@ ar:
         many: "%{count} جديدًا"
         other: "%{count} جديدة"
       more: "المزيد..."
+      all_categories: "كل الفئات"
       sections:
+        about:
+          header_link_text: "نبذة"
         messages:
           header_link_text: "الرسائل"
           links:

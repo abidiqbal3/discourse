@@ -2232,6 +2232,13 @@ da:
     not_logged_in_user: "bruger side, med oversigt over aktivitet og indstillinger"
     current_user: "gå til din brugerside"
     view_all: "vis alle %{tab}"
+    user_menu:
+      tabs:
+        replies: "Svar"
+        mentions: "Omtaler"
+        likes: "Syntes godt om"
+        bookmarks: "Bogmærker"
+        profile: "Profil"
     topics:
       new_messages_marker: "sidste besøg"
       bulk:
@@ -2838,10 +2845,6 @@ da:
         confirm:
           one: "Er du sikker på, at du vil slette dette indlæg?"
           other: "Er du sikker på, at du vil slette disse %{count}indlæg?"
-      merge:
-        confirm:
-          one: "Er du sikker på, at du vil flette disse indlæg?"
-          other: "Er du sikker på, at du vil flette disse %{count}indlæg?"
       revisions:
         controls:
           first: "Første udgave"
@@ -3559,7 +3562,10 @@ da:
         one: "%{count} ny"
         other: "%{count} nye"
       more: "Mere..."
+      all_categories: "Alle kategorier"
       sections:
+        about:
+          header_link_text: "Om"
         messages:
           header_link_text: "Beskeder"
           links:

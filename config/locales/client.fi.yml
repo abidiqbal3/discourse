@@ -2176,6 +2176,13 @@ fi:
     not_logged_in_user: "käyttäjäsivu, jossa on yhteenveto käyttäjän viimeaikaisesta toiminnasta sekä käyttäjäasetukset"
     current_user: "siirry omalle käyttäjäsivullesi"
     view_all: "näytä kaikki %{tab}"
+    user_menu:
+      tabs:
+        replies: "Vastaukset"
+        mentions: "Maininnat"
+        likes: "Tykkäykset"
+        bookmarks: "Kirjanmerkit"
+        profile: "Profiili"
     topics:
       new_messages_marker: "edellinen vierailu"
       bulk:
@@ -2781,10 +2788,6 @@ fi:
         confirm:
           one: "Oletko varma, että haluat poistaa viestin?"
           other: "Oletko varma, että haluat poistaa %{count} viestiä?"
-      merge:
-        confirm:
-          one: "Oletko varma, että haluat yhdistää nämä viestit?"
-          other: "Oletko varma, että haluat yhdistää nämä %{count} viestiä?"
       revisions:
         controls:
           first: "Ensimmäinen revisio"
@@ -3464,7 +3467,10 @@ fi:
         one: "%{count} uusi"
         other: "%{count} uutta"
       more: "Lisää..."
+      all_categories: "Kaikki alueet"
       sections:
+        about:
+          header_link_text: "Tietoa"
         messages:
           header_link_text: "Viestit"
           links:

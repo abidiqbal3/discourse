@@ -2145,6 +2145,13 @@ nb_NO:
     not_logged_in_user: "brukerside med oppsummering av nåværende aktivtet og preferanser."
     current_user: "gå til din brukerside"
     view_all: "se alle %{tab}"
+    user_menu:
+      tabs:
+        replies: "Svar"
+        mentions: "Omtalelser"
+        likes: "Likes tildelt"
+        bookmarks: "Bokmerker"
+        profile: "Profil"
     topics:
       new_messages_marker: "siste besøk"
       bulk:
@@ -2735,10 +2742,6 @@ nb_NO:
         confirm:
           one: "Er du sikker på at du ønsker å slette dette innlegget?"
           other: "Er du sikker på at du ønsker å slette de %{count} innleggene?"
-      merge:
-        confirm:
-          one: "Er du sikker på at du vil flette disse postene?"
-          other: "Er du sikker på at du vil flette de %{count} innleggene?"
       revisions:
         controls:
           first: "Første versjon"
@@ -3422,7 +3425,10 @@ nb_NO:
         one: "%{count} ny"
         other: "%{count} nye"
       more: "Mer…"
+      all_categories: "Alle kategorier"
       sections:
+        about:
+          header_link_text: "Om"
         messages:
           header_link_text: "Meldinger"
           links:

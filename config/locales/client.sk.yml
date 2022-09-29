@@ -1413,6 +1413,13 @@ sk:
     go_back: "späť"
     not_logged_in_user: "používateľská stránka so súhrnom aktivít a nastavení"
     current_user: "prejsť na Vašu používateľskú stránku"
+    user_menu:
+      tabs:
+        replies: "Odpovede"
+        mentions: "Zmienky"
+        likes: "Rozdaných 'páči sa mi'"
+        bookmarks: "Záložky"
+        profile: "Profil"
     topics:
       new_messages_marker: "posledná návševa"
       bulk:
@@ -2280,7 +2287,10 @@ sk:
         many: "%{count} nových"
         other: "%{count} nových"
       more: "Viac ..."
+      all_categories: "Všetky kategórie"
       sections:
+        about:
+          header_link_text: "O stránke"
         messages:
           header_link_text: "Správy"
           links:

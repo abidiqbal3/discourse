@@ -1838,6 +1838,8 @@ en:
       enabled: "This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now."
       login_disabled: "Login is disabled while the site is in read only mode."
       logout_disabled: "Logout is disabled while the site is in read only mode."
+    staff_writes_only_mode:
+      enabled: "This site is in staff only mode. Please continue to browse, but replying, likes, and other actions are limited to staff members only."
     too_few_topics_and_posts_notice_MF: >-
       Let's <a href="https://blog.discourse.org/2014/08/building-a-discourse-community/">start the discussion!</a>
       There {currentTopics, plural, one {is <strong>#</strong> topic} other {are <strong>#</strong> topics}} and
@@ -1886,7 +1888,7 @@ en:
       hide_forever: "no thanks"
       hidden_for_session: "OK, we'll ask you tomorrow. You can always use 'Log In' to create an account, too."
       intro: "Hello! Looks like you’re enjoying the discussion, but you haven’t signed up for an account yet."
-      value_prop: "Tired of scrolling through the same posts? when you create an account you’ll always come back to where you left off. With an account you can also be notified of new replies, save bookmarks, and use likes to thank others. We can all work together to make this community great. :heart:"
+      value_prop: "Tired of scrolling through the same posts? When you create an account you’ll always come back to where you left off. With an account you can also be notified of new replies, save bookmarks, and use likes to thank others. We can all work together to make this community great. :heart:"
 
     summary:
       enabled_description: "You're viewing a summary of this topic: the most interesting posts as determined by the community."
@@ -2164,6 +2166,8 @@ en:
       similar_topics: "Your topic is similar to..."
       drafts_offline: "drafts offline"
       edit_conflict: "edit conflict"
+      esc: "esc"
+      esc_label: "Click or press Esc to dismiss"
 
       group_mentioned_limit:
         one: "<b>Warning!</b> You mentioned <a href='%{group_link}'>%{group}</a>, however this group has more members than the administrator configured mention limit of %{count} user. Nobody will be notified."
@@ -2271,6 +2275,9 @@ en:
         body: "Right now this message is only being sent to yourself!"
       slow_mode:
         error: "This topic is in slow mode. You already posted recently; you can post again in %{timeLeft}."
+      user_not_seen_in_a_while:
+        single: "The person you are messaging, <b>%{usernames}</b>, hasn’t been seen here in a very long time – %{time_ago}. They may not receive your message. You may wish to seek out alternate methods of contacting %{usernames}."
+        multiple: "The following people you are messaging: <b>%{usernames}</b>, haven’t been seen here in a very long time – %{time_ago}. They may not receive your message. You may wish to seek out alternate methods of contacting them."
 
       admin_options_title: "Optional staff settings for this topic"
 
@@ -2567,17 +2574,53 @@ en:
     view_all: "view all %{tab}"
     user_menu:
       generic_no_items: "There are no items in this list."
-      sr_menu_tabs: "Menu tabs"
+      sr_menu_tabs: "User menu tabs"
       view_all_notifications: "view all notifications"
       view_all_bookmarks: "view all bookmarks"
       view_all_messages: "view all personal messages"
+      tabs:
+        all_notifications: "All notifications"
+        replies: "Replies"
+        replies_with_unread:
+          one: "Replies - %{count} unread reply"
+          other: "Replies - %{count} unread replies"
+        mentions: "Mentions"
+        mentions_with_unread:
+          one: "Mentions - %{count} unread mention"
+          other: "Mentions - %{count} unread mentions"
+        likes: "Likes"
+        likes_with_unread:
+          one: "Likes - %{count} unread like"
+          other: "Likes - %{count} unread likes"
+        watching: "Watched topics"
+        watching_with_unread:
+          one: "Watched topics - %{count} unread watched topic"
+          other: "Watched topics - %{count} unread watched topics"
+        messages: "Personal messages"
+        messages_with_unread:
+          one: "Personal messages - %{count} unread message"
+          other: "Personal messages - %{count} unread messages"
+        bookmarks: "Bookmarks"
+        bookmarks_with_unread:
+          one: "Bookmarks - %{count} unread bookmark"
+          other: "Bookmarks - %{count} unread bookmarks"
+        review_queue: "Review queue"
+        review_queue_with_unread:
+          one: "Review queue - %{count} item needs review"
+          other: "Review queue - %{count} items need review"
+        other_notifications: "Other notifications"
+        other_notifications_with_unread:
+          one: "Other notifications - %{count} unread notification"
+          other: "Other notifications - %{count} unread notifications"
+        profile: "Profile"
       reviewable:
         view_all: "view all review items"
         queue: "Queue"
         deleted_user: "(deleted user)"
+        deleted_post: "(deleted post)"
         post_number_with_topic_title: "post #%{post_number} - %{title}"
         new_post_in_topic: "new post in %{title}"
-        suspicious_user: "suspicious user %{username}"
+        user_requires_approval: "%{username} requires approval"
         default_item: "reviewable item #%{reviewable_id}"
 
     topics:
@@ -4100,6 +4143,8 @@ en:
       all_categories: "All categories"
       all_tags: "All tags"
       sections:
+        about:
+          header_link_text: "About"
         messages:
           header_link_text: "Messages"
           header_action_title: "create a personal message"
@@ -4151,6 +4196,10 @@ en:
               draft_count:
                 one: "%{count} draft"
                 other: "%{count} drafts"
+            review:
+              content: "Review"
+              title: "review"
+              pending_count: "%{count} pending"
 
     welcome_topic_banner:
       title: "Create your Welcome Topic"
@@ -5293,6 +5342,7 @@ en:
         suspended: "Suspended?"
         staged: "Staged?"
         show_admin_profile: "Admin"
+        manage_user: "Manage user"
         show_public_profile: "Show Public Profile"
         impersonate: "Impersonate"
         action_logs: "Action Logs"

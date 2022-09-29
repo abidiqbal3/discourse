@@ -21,16 +21,6 @@ module("Integration | Component | user-menu", function (hooks) {
     assert.ok(notifications[2].classList.contains("liked-consolidated"));
   });
 
-  test("notifications panel has a11y attributes", async function (assert) {
-    await render(template);
-    const panel = query("#quick-access-all-notifications");
-    assert.strictEqual(panel.getAttribute("tabindex"), "-1");
-    assert.strictEqual(
-      panel.getAttribute("aria-labelledby"),
-      "user-menu-button-all-notifications"
-    );
-  });
-
   test("active tab has a11y attributes that indicate it's active", async function (assert) {
     await render(template);
     const activeTab = query(".top-tabs.tabs-list .btn.active");
@@ -108,10 +98,11 @@ module("Integration | Component | user-menu", function (hooks) {
     );
   });
 
-  test("messages tab isn't shown if current user isn't staff and enable_personal_messages setting is disabled", async function (assert) {
+  test("messages tab isn't shown if current user isn't staff and user does not belong to personal_message_enabled_groups", async function (assert) {
     this.currentUser.set("moderator", false);
     this.currentUser.set("admin", false);
-    this.siteSettings.enable_personal_messages = false;
+    this.currentUser.set("groups", []);
+    this.siteSettings.personal_message_enabled_groups = "13"; // trust_level_3 auto group ID;
 
     await render(template);
 
@@ -127,10 +118,11 @@ module("Integration | Component | user-menu", function (hooks) {
     );
   });
 
-  test("messages tab is shown if current user is staff even if enable_personal_messages setting is disabled", async function (assert) {
+  test("messages tab is shown if current user is staff even if they do not belong to personal_message_enabled_groups", async function (assert) {
     this.currentUser.set("moderator", true);
     this.currentUser.set("admin", false);
-    this.siteSettings.enable_personal_messages = false;
+    this.currentUser.set("groups", []);
+    this.siteSettings.personal_message_enabled_groups = "999";
 
     await render(template);
 
@@ -247,6 +239,8 @@ module("Integration | Component | user-menu", function (hooks) {
             },
           },
         ];
+      } else if (queryParams.filter_by_types === "replied,quoted") {
+        data = [];
       } else {
         throw new Error(
           `unexpected notification type ${queryParams.filter_by_types}`
@@ -293,6 +287,22 @@ module("Integration | Component | user-menu", function (hooks) {
       "active tab is now the likes tab"
     );
     assert.strictEqual(queryAll("#quick-access-likes ul li").length, 3);
+
+    await click("#user-menu-button-replies");
+    assert.ok(exists("#quick-access-replies.quick-access-panel"));
+    assert.strictEqual(
+      queryParams.filter_by_types,
+      "replied,quoted",
+      "request params has filter_by_types set to `replied` and `quoted`"
+    );
+    assert.strictEqual(queryParams.silent, "true");
+    activeTabs = queryAll(".top-tabs .btn.active");
+    assert.strictEqual(activeTabs.length, 1);
+    assert.strictEqual(
+      activeTabs[0].id,
+      "user-menu-button-replies",
+      "active tab is now the replies tab"
+    );
 
     await click("#user-menu-button-review-queue");
     assert.ok(exists("#quick-access-review-queue.quick-access-panel"));

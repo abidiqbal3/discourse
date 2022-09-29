@@ -45,11 +45,14 @@ const CORE_TOP_TABS = [
     }
 
     get count() {
-      return this.getUnreadCountForType("replied");
+      return (
+        this.getUnreadCountForType("replied") +
+        this.getUnreadCountForType("quoted")
+      );
     }
 
     get notificationTypes() {
-      return ["replied"];
+      return ["replied", "quoted"];
     }
 
     get linkWhenActive() {
@@ -163,9 +166,7 @@ const CORE_TOP_TABS = [
     }
 
     get shouldDisplay() {
-      return (
-        this.siteSettings.enable_personal_messages || this.currentUser.staff
-      );
+      return this.currentUser?.allowPersonalMessages;
     }
 
     get notificationTypes() {
@@ -257,7 +258,7 @@ const CORE_OTHER_NOTIFICATIONS_TAB = class extends UserMenuTab {
   }
 
   get id() {
-    return "other";
+    return "other-notifications";
   }
 
   get icon() {
@@ -377,5 +378,10 @@ export default class UserMenu extends Component {
   @action
   triggerRenderedAppEvent() {
     this.appEvents.trigger("user-menu:rendered");
+  }
+
+  @action
+  focusFirstTab(topTabsContainerElement) {
+    topTabsContainerElement.querySelector(".btn.active")?.focus();
   }
 }

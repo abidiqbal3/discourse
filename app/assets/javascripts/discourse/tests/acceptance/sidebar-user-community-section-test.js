@@ -229,6 +229,21 @@ acceptance("Sidebar - Logged on user - Community Section", function (needs) {
     );
   });
 
+  test("users section link is not shown when enable_user_directory site setting is disabled", async function (assert) {
+    this.siteSettings.enable_user_directory = false;
+
+    await visit("/");
+
+    await click(
+      ".sidebar-section-community .sidebar-more-section-links-details-summary"
+    );
+
+    assert.notOk(
+      exists(".sidebar-section-community .sidebar-section-link-users"),
+      "users section link is not displayed in sidebar"
+    );
+  });
+
   test("clicking on badges link", async function (assert) {
     await visit("/");
 
@@ -242,6 +257,21 @@ acceptance("Sidebar - Logged on user - Community Section", function (needs) {
       currentURL(),
       "/badges",
       "it should transition to the badges url"
+    );
+  });
+
+  test("badges section link is not shown when badges has been disabled", async function (assert) {
+    this.siteSettings.enable_badges = false;
+
+    await visit("/");
+
+    await click(
+      ".sidebar-section-community .sidebar-more-section-links-details-summary"
+    );
+
+    assert.notOk(
+      exists(".sidebar-section-community .sidebar-section-link-badges"),
+      "badges section link is not shown in sidebar"
     );
   });
 
@@ -289,6 +319,21 @@ acceptance("Sidebar - Logged on user - Community Section", function (needs) {
     assert.ok(
       exists(".sidebar-section-community .sidebar-section-link-groups.active"),
       "groups link is displayed in sidebar when it is the active route"
+    );
+  });
+
+  test("groups section link is not shown when enable_group_directory site setting has been disabled", async function (assert) {
+    this.siteSettings.enable_group_directory = false;
+
+    await visit("/");
+
+    await click(
+      ".sidebar-section-community .sidebar-more-section-links-details-summary"
+    );
+
+    assert.notOk(
+      exists(".sidebar-section-community .sidebar-section-link-groups"),
+      "groups section link is not shown in sidebar"
     );
   });
 
@@ -662,6 +707,86 @@ acceptance("Sidebar - Logged on user - Community Section", function (needs) {
     assert.ok(
       exists(".sidebar-section-community .sidebar-section-link-tracked.active"),
       "the tracked link is marked as active"
+    );
+  });
+
+  test("review link is not shown when user cannot review", async function (assert) {
+    updateCurrentUser({ can_review: false });
+
+    await visit("/");
+
+    assert.notOk(
+      exists(".sidebar-section-community .sidebar-section-link-review"),
+      "review link is not shown"
+    );
+
+    await click(
+      ".sidebar-section-community .sidebar-more-section-links-details-summary"
+    );
+
+    assert.notOk(
+      exists(".sidebar-section-community .sidebar-section-link-review"),
+      "review link is not shown"
+    );
+  });
+
+  test("review link when user can review", async function (assert) {
+    updateCurrentUser({
+      can_review: true,
+      reviewable_count: 0,
+    });
+
+    await visit("/reivew");
+
+    assert.notOk(
+      exists(".sidebar-section-community .sidebar-section-link-review.active"),
+      "review link is shown as active when visiting the review route even if there are no pending reviewables"
+    );
+
+    await visit("/");
+
+    assert.notOk(
+      exists(".sidebar-section-community .sidebar-section-link-review"),
+      "review link is not shown as part of the main section links"
+    );
+
+    await click(
+      ".sidebar-section-community .sidebar-more-section-links-details-summary"
+    );
+
+    assert.ok(
+      exists(
+        ".sidebar-section-community .sidebar-more-section-links-details-content .sidebar-section-link-review"
+      ),
+      "review link is displayed in the more drawer"
+    );
+
+    await publishToMessageBus("/reviewable_counts", {
+      reviewable_count: 34,
+    });
+
+    assert.ok(
+      exists(".sidebar-section-community .sidebar-section-link-review"),
+      "review link is shown as part of the main section links"
+    );
+
+    assert.strictEqual(
+      query(
+        ".sidebar-section-community .sidebar-section-link-review .sidebar-section-link-content-badge"
+      ).textContent.trim(),
+      "34 pending",
+      "displays the pending reviewable count"
+    );
+
+    await click(
+      ".sidebar-section-community .sidebar-more-section-links-details-summary"
+    );
+
+    assert.notOk(
+      exists(
+        ".sidebar-section-community .sidebar-more-section-links-details-content .sidebar-section-link-review"
+      ),
+      "review link is not displayed in the more drawer"
     );
   });
 

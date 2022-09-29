@@ -34,6 +34,13 @@ export default class BaseCommunitySectionLink {
   }
 
   /**
+   * @returns {boolean} Whether the section link should be displayed. Defaults to true.
+   */
+  get shouldDisplay() {
+    return true;
+  }
+
+  /**
    * @returns {string} Ember route
    */
   get route() {
@@ -85,6 +92,20 @@ export default class BaseCommunitySectionLink {
    * @returns {string} Text for the badge within the link
    */
   get badgeText() {}
+
+  /**
+   * @private
+   */
+  get prefixType() {
+    return "icon";
+  }
+
+  /**
+   * @returns {string} The name of the fontawesome icon to be displayed before the link. Defaults to "link".
+   */
+  get prefixValue() {
+    return "link";
+  }
 
   _notImplemented() {
     throw "not implemented";

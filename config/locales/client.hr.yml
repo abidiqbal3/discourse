@@ -2422,6 +2422,13 @@ hr:
     not_logged_in_user: "stranica korisnika sa sažetkom trenutnih aktivnosti i postavki"
     current_user: "idi na korisničku stranicu"
     view_all: "pogledaj sve %{tab}"
+    user_menu:
+      tabs:
+        replies: "Odgovori"
+        mentions: "Spomeni"
+        likes: "Like-ova"
+        bookmarks: "Zabilješke"
+        profile: "Profil"
     topics:
       new_messages_marker: "posljednji posjet"
       bulk:
@@ -3110,11 +3117,6 @@ hr:
           one: "Jeste li sigurni da želite izbrisati taj post?"
           few: "Jeste li sigurni da želite izbrisati %{count}\" postova?"
           other: "Jeste li sigurni da želite izbrisati te %{count} postove?"
-      merge:
-        confirm:
-          one: "Jeste li sigurni da želite spojiti taj post?"
-          few: "Jeste li sigurni da želite spojiti %{count} postova?"
-          other: "Jeste li sigurni da želite spojiti ovih %{count} objava?"
       revisions:
         controls:
           first: "Prva revizija"
@@ -3894,7 +3896,10 @@ hr:
         few: "%{count} novih"
         other: "%{count} novi"
       more: "Više..."
+      all_categories: "Sve kategorije"
       sections:
+        about:
+          header_link_text: "O nama"
         messages:
           header_link_text: "Poruke"
           links:

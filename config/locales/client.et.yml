@@ -1549,6 +1549,13 @@ et:
     not_logged_in_user: "kasutajaleht koos toimingute ja eelistuste kokkuvõttega"
     current_user: "mine oma kasutajalehele"
     view_all: "vaata kõiki %{tab}"
+    user_menu:
+      tabs:
+        replies: "Vastused"
+        mentions: "Mainimisi"
+        likes: "Meeldimisi antud"
+        bookmarks: "Järjehoidjat"
+        profile: "Profiil"
     topics:
       new_messages_marker: "viimane visiit"
       bulk:
@@ -2029,10 +2036,6 @@ et:
         confirm:
           one: "Oled sa kindel, et soovid seda postitust kustutada?"
           other: "Oled sa kindel, et soovid neid %{count} postitust kustutada?"
-      merge:
-        confirm:
-          one: "Oled kindel, et soovid need postitused ühendada?"
-          other: "Oled kindel, et soovid need %{count} postitust ühendada?"
       revisions:
         controls:
           first: "Esimene redaktsioon"
@@ -2537,7 +2540,10 @@ et:
         one: "%{count} uus"
         other: "%{count} uut"
       more: "Veel..."
+      all_categories: "Kõik foorumid"
       sections:
+        about:
+          header_link_text: "Teave"
         messages:
           header_link_text: "Sõnumid"
           links:

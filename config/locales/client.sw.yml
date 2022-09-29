@@ -1425,6 +1425,13 @@ sw:
     go_back: "rudi nyuma"
     not_logged_in_user: "karatasi ya kwanza yenye muhtasari wa shughuli na mapendekezo ya sasa"
     current_user: "nenda kwenye ukurasa wako"
+    user_menu:
+      tabs:
+        replies: "Majibu"
+        mentions: "Kutajwa"
+        likes: "Upendo Uliotolewa"
+        bookmarks: "Mialamisho"
+        profile: "Maelezo mafupi"
     topics:
       new_messages_marker: "Mara ya mwisho imetembelewa"
       bulk:
@@ -2258,7 +2265,10 @@ sw:
         one: "Mada mpya %{count}"
         other: "Mada mpya %{count} "
       more: "Zaidi"
+      all_categories: "Kategoria Zote"
       sections:
+        about:
+          header_link_text: "Kuhusu"
         messages:
           header_link_text: "Ujumbe"
           links:

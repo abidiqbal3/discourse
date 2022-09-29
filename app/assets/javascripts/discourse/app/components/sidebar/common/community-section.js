@@ -1,5 +1,6 @@
 import Component from "@glimmer/component";
 import { inject as service } from "@ember/service";
+import { tracked } from "@glimmer/tracking";
 
 import {
   customSectionLinks,
@@ -13,37 +14,18 @@ export default class SidebarCommunitySection extends Component {
   @service appEvents;
   @service siteSettings;
 
+  @tracked sectionLinks;
+  @tracked moreSectionLinks;
+  @tracked moreSecondarySectionLinks;
+
+  callbackId;
   headerActionsIcon;
   headerActions;
-  sectionLinks;
-  moreSectionLinks;
-  moreSecondarySectionLinks;
-  callbackId;
 
   constructor() {
     super(...arguments);
 
-    this.moreSectionLinks = [
-      ...this.defaultMoreSectionLinks,
-      ...customSectionLinks,
-    ].map((sectionLinkClass) => {
-      return this.#initializeSectionLink(sectionLinkClass);
-    });
-
-    this.moreSecondarySectionLinks = [
-      ...this.defaultMoreSecondarySectionLinks,
-      ...secondaryCustomSectionLinks,
-    ].map((sectionLinkClass) => {
-      return this.#initializeSectionLink(sectionLinkClass);
-    });
-
-    const mainSectionLinks = this.currentUser?.staff
-      ? [...this.defaultMainSectionLinks, ...this.defaultAdminMainSectionLinks]
-      : [...this.defaultMainSectionLinks];
-
-    this.sectionLinks = mainSectionLinks.map((sectionLinkClass) => {
-      return this.#initializeSectionLink(sectionLinkClass);
-    });
+    this.refreshSectionLinks();
 
     this.callbackId = this.topicTrackingState.onStateChange(() => {
       this.sectionLinks.forEach((sectionLink) => {
@@ -63,11 +45,6 @@ export default class SidebarCommunitySection extends Component {
   }
 
   // Override in child
-  get defaultAdminMainSectionLinks() {
-    return [];
-  }
-
-  // Override in child
   get defaultMoreSectionLinks() {
     return [];
   }
@@ -75,6 +52,34 @@ export default class SidebarCommunitySection extends Component {
   // Override in child
   get defaultMoreSecondarySectionLinks() {
     return [];
+  }
+
+  refreshSectionLinks() {
+    this.moreSectionLinks = this.#initializeSectionLinks([
+      ...this.defaultMoreSectionLinks,
+      ...customSectionLinks,
+    ]);
+
+    this.moreSecondarySectionLinks = this.#initializeSectionLinks([
+      ...this.defaultMoreSecondarySectionLinks,
+      ...secondaryCustomSectionLinks,
+    ]);
+
+    this.sectionLinks = this.#initializeSectionLinks(
+      this.defaultMainSectionLinks
+    );
+  }
+
+  #initializeSectionLinks(sectionLinkClasses) {
+    return sectionLinkClasses.reduce((links, sectionLinkClass) => {
+      const sectionLink = this.#initializeSectionLink(sectionLinkClass);
+
+      if (sectionLink.shouldDisplay) {
+        links.push(sectionLink);
+      }
+
+      return links;
+    }, []);
   }
 
   #initializeSectionLink(sectionLinkClass) {
